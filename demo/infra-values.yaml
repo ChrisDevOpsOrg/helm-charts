@@ -1,5 +1,5 @@
 ingress:
-  enabled: true
+  enabled: false
   className: ""
   annotations:
     alb.ingress.kubernetes.io/load-balancer-name: "demo-alb"
@@ -30,7 +30,7 @@ ingress:
 
 ingressRoute:
   active:
-    enabled: true
+    enabled: false
     name: ingressroute
     domainName: "qa.demo.com"
   preview:
