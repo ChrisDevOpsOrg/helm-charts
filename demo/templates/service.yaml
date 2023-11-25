@@ -1,15 +1,19 @@
+{{- $top := . }}
+{{- range $deployment := .Values.deploymentList }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "demo.fullname" . }}
+  name: {{ $deployment.name }}
   labels:
-    {{- include "demo.labels" . | nindent 4 }}
+    {{ $deployment.name }}
 spec:
-  type: {{ .Values.service.type }}
+  type: ClusterIP
   ports:
-    - port: {{ .Values.service.port }}
+    - port: 80
       targetPort: http
       protocol: TCP
       name: http
   selector:
-    {{- include "demo.selectorLabels" . | nindent 4 }}
+    {{ $deployment.name }}
+---
+{{- end}}

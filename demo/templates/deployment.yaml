@@ -9,7 +9,7 @@ metadata:
     app: {{ $deployment.name }}
     environment: {{ $top.Values.commonConfig.environment}}
 spec:
-  replicas: {{ $deployment.replicaCount | default 1}}
+  replicas: {{ $deployment.replicas | default 1}}
   selector:
     matchLabels:
       app: {{ $deployment.name }}
@@ -35,10 +35,19 @@ spec:
       securityContext:
         {{- toYaml $.Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ $deployment.name }}
+        - env:
+        {{- if $deployment.extraEnvs }}
+        {{- include "demo.tplvalues.render" (dict "value" $deployment.extraEnvs "context" $ ) | nindent 10 }}
+        {{- end }}
+        {{- if $deployment.cm }}
+          envFrom:
+            - configMapRef:
+                name: {{ $deployment.cm}}
+        {{- end }}
+          name: {{ $deployment.name }}
           securityContext:
             {{- toYaml $top.Values.securityContext | nindent 12 }}
-          image: {{ $top.Values.commonConfig.repository}}/{{$deployment.name}}:{{$deployment.imageTag}}
+          image: {{ $deployment.repository | default $top.Values.commonConfig.repository}}/{{$deployment.name}}:{{$deployment.imageTag}}
           imagePullPolicy: {{ $top.Values.imagePullPolicy | default "IfNotPresent"}}
           ports:
             - name: http
@@ -68,17 +77,17 @@ spec:
             timeoutSeconds: 3
           resources:
             limits:
-              cpu: {{$deployment.cpu | default "1"}}
-              memory: {{$deployment.memory | default "1024Mi"}}
+              cpu: {{$deployment.cpuAllocated | default "1"}}
+              memory: {{$deployment.memAllocated | default "1024Mi"}}
             requests:
-              cpu: {{$deployment.cpu | default "1"}}
-              memory: {{$deployment.memory | default "1024Mi"}}
+              cpu: {{$deployment.cpuAllocated | default "1"}}
+              memory: {{$deployment.memAllocated | default "1024Mi"}}
   {{- if eq $top.Values.commonConfig.resourceKind "Rollout"}}
   strategy:
     blueGreen:
       activeService: {{ $deployment.name }}
       previewService: {{ $deployment.name}}-preview
-      {{- toYaml $top.Values.strategty.Rollout.blueGreen | nindent 6}}
+      {{- toYaml $top.Values.strategy.Rollout.blueGreen | nindent 6}}
 
   {{- end}}
 ---
