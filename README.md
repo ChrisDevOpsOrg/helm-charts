@@ -1,8 +1,10 @@
-    ## Create a new GitHub repository
+# Use Github Page to Configure public helm chart repository
+
+## Create a new GitHub repository
 
 ## Clone the repository
 ```shell
-git clone git@github.com:chris-addo/helm-charts.git
+git clone git@github.com:ChrisDevOpsOrg/helm-charts.git
 cd helm-charts
 ```
 
@@ -16,7 +18,7 @@ echo -e "User-Agent: *\nDisallow: /" > robots.txt
 ```shell
 mkdir -p chart-sources
 cd chart-sources
-helm create nginx-demo
+helm create demo
 ```
 
 ## lint the chart
@@ -90,9 +92,9 @@ generated: "2023-11-25T08:21:50.8590034+08:00"
 export GITHUB_TOKEN="YOUR_GITHUB_TOKEN"
 helm repo add demo-charts "https://${GITHUB_TOKEN}@raw.githubusercontent.com/ChrisDevOpsOrg/helm-charts/main/"
 ```
-> Enclose the url with double quote " "
-> The trailing / is mandatory
-> If you want to use different branch, change the **main** to your branch name.
+> - Enclose the url with double quote " "
+> - The trailing / is mandatory
+> - If you want to use different branch, change the **main** to your branch name.
 
 Onec the repos is added, you can search it or install charts from it. Note that you will have to update the local
 repository index when looking for new versions.
