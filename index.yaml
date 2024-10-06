@@ -3,22 +3,32 @@ entries:
   demo:
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-11-25T10:42:08.54342808+08:00"
+    created: "2024-10-06T08:58:48.160278+08:00"
     description: A Helm chart for Kubernetes
-    digest: 0aaf64ce53573b082edf7407420be3bd784ab14b96d547c37428a301e3f4a654
+    digest: 285ff55a0862b76dbe6ff314058103d3dfe553ab98d547772595b1d6f53e4997
     name: demo
     type: application
     urls:
-    - demo-0.1.5.tgz
+    - https://ChrisDevOpsOrg.github.io/helm-charts/demo-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
+    appVersion: 1.0.0
+    created: "2024-10-06T08:58:48.159505+08:00"
+    description: A Helm chart for Kubernetes
+    digest: 730866a3e4623c05aaacf77ed0abfb312b3712f79f13c6f8373926856935ab73
+    name: demo
+    type: application
+    urls:
+    - https://ChrisDevOpsOrg.github.io/helm-charts/demo-0.1.5.tgz
     version: 0.1.5
   - apiVersion: v2
     appVersion: 1.0.0
-    created: "2023-11-25T10:42:08.543148756+08:00"
+    created: "2024-10-06T08:58:48.158755+08:00"
     description: A Helm chart for Kubernetes
     digest: efcd5c5f1e0c54fba96a53840ea2ef601f8ebcb9bc7292dc61d68adc5499ece0
     name: demo
     type: application
     urls:
-    - demo-0.1.3.tgz
+    - https://ChrisDevOpsOrg.github.io/helm-charts/demo-0.1.3.tgz
     version: 0.1.3
-generated: "2023-11-25T10:42:08.542759286+08:00"
+generated: "2024-10-06T08:58:48.157699+08:00"
